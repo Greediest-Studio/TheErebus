@@ -26,6 +26,8 @@ import erebus.entity.EntityBotFlyLarva;
 import erebus.entity.EntityCentipede;
 import erebus.entity.EntityChameleonTick;
 import erebus.entity.EntityCicada;
+import erebus.entity.EntityCorruptedAnt;
+import erebus.entity.EntityCorruptedAntEmperor;
 import erebus.entity.EntityCropWeevil;
 import erebus.entity.EntityCrushroom;
 import erebus.entity.EntityDragonfly;
@@ -141,6 +143,8 @@ public class ModEntities {
 		registerEntity(40, EntityCrushroom.class, "crushroom", 0xD6D3C8, 0x431200);
 		registerEntity(41, EntityBlackAnt.class, "black_ant", 0x1E1E1E, 0xFF6600);
 		registerEntity(42, EntityZombieAnt.class, "zombie_ant", 0x19370E, 0x00A300);
+		registerEntity(82, EntityCorruptedAnt.class, "corrupted_ant", 0x2A182E, 0x6CFFAF);
+		registerEntity(83, EntityCorruptedAntEmperor.class, "corrupted_ant_emperor", 0x140A12, 0x9DFFD4);
 		registerEntity(43, EntityTarantulaMiniboss.class, "tarantula_mini_boss", 0x0E0E0E, 0x7FBDFF);
 		registerEntity(44, EntityTarantulaBaby.class, "tarantula_baby", 0x0E0E0E, 0xD4D407);
 		registerEntity(45, EntityPondSkater.class, "pond_skater", 0x6D6F6C, 0xC20000);
