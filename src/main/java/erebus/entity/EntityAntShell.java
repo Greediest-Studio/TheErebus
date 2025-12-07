@@ -76,21 +76,21 @@ public class EntityAntShell extends EntityMob {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSounds.FIRE_ANT_SOUND;
+        return null;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSounds.FIRE_ANT_HURT;
+        return null;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSounds.SQUISH;
+        return null;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
-        playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.1F, 0.8F);
+        // silent
     }
 }
