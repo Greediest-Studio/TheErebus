@@ -10,6 +10,7 @@ import erebus.core.handler.configs.ConfigHandler;
 import erebus.entity.EntityAnimatedBambooCrate;
 import erebus.entity.EntityAnimatedBlock;
 import erebus.entity.EntityAnimatedChest;
+import erebus.entity.EntityAntShell;
 import erebus.entity.EntityAntlion;
 import erebus.entity.EntityAntlionBoss;
 import erebus.entity.EntityAntlionMiniBoss;
@@ -145,6 +146,7 @@ public class ModEntities {
 		registerEntity(42, EntityZombieAnt.class, "zombie_ant", 0x19370E, 0x00A300);
 		registerEntity(82, EntityCorruptedAnt.class, "corrupted_ant", 0x2A182E, 0x6CFFAF);
 		registerEntity(83, EntityCorruptedAntEmperor.class, "corrupted_ant_emperor", 0x140A12, 0x9DFFD4);
+		registerEntity(84, EntityAntShell.class, "ant_shell", 0x3E2C1F, 0xB0A896);
 		registerEntity(43, EntityTarantulaMiniboss.class, "tarantula_mini_boss", 0x0E0E0E, 0x7FBDFF);
 		registerEntity(44, EntityTarantulaBaby.class, "tarantula_baby", 0x0E0E0E, 0xD4D407);
 		registerEntity(45, EntityPondSkater.class, "pond_skater", 0x6D6F6C, 0xC20000);
