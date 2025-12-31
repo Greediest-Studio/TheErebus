@@ -20,6 +20,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+
+import erebus.events.PlayerMudWalkEvent;
 
 public class BlockMud extends Block {
 
@@ -62,8 +65,15 @@ public class BlockMud extends Block {
 	}
 
 	@Override
-    public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
-		if (!canEntityWalkOnMud(entity)) {
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
+		boolean applyMud = true;
+		if (entity instanceof EntityPlayer) {
+			PlayerMudWalkEvent event = new PlayerMudWalkEvent((EntityPlayer) entity, world, pos);
+			MinecraftForge.EVENT_BUS.post(event);
+			applyMud = event.shouldApplyMud();
+		}
+
+		if (!canEntityWalkOnMud(entity) && applyMud) {
 			entity.motionX *= 0.08D;
 			if(!entity.isInWater() && entity.motionY < 0 && entity.onGround) entity.motionY = -0.1D;
 			entity.motionZ *= 0.08D;

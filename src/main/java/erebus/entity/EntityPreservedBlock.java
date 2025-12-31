@@ -4,14 +4,10 @@ import erebus.ModBlocks;
 import erebus.api.ErebusAPI;
 import erebus.blocks.BlockPreservedBlock;
 import erebus.blocks.BlockPreservedBlock.EnumAmberType;
-import erebus.core.helper.Utils;
-import erebus.tileentity.TileEntityPreservedBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -32,7 +28,7 @@ public class EntityPreservedBlock extends EntityThrowable {
 	}
 
 	@Override
-	protected void onImpact(RayTraceResult mop) {
+	public void onImpact(RayTraceResult mop) {
 		if (getEntityWorld().isRemote)
 			return;
 		BlockPos pos = new BlockPos(MathHelper.floor(posX), MathHelper.floor(posY), MathHelper.floor(posZ));
@@ -40,8 +36,6 @@ public class EntityPreservedBlock extends EntityThrowable {
 		if (mop.entityHit != null && !(mop.entityHit instanceof EntityPlayer)) {
 			if (canTrap(mop.entityHit)) {
 				getEntityWorld().setBlockState(pos, ModBlocks.PRESERVED_BLOCK.getDefaultState().withProperty(BlockPreservedBlock.TYPE, EnumAmberType.AMBER_GLASS), 3);
-				TileEntityPreservedBlock tile = Utils.getTileEntity(getEntityWorld(), pos, TileEntityPreservedBlock.class);
-				tile.setEntityNBT(trapEntity(mop.entityHit));
 				mop.entityHit.setDead();
 			}
 		} else if (mop.entityHit == null && ModBlocks.AMBER.canPlaceBlockAt(getEntityWorld(), pos))
@@ -52,14 +46,5 @@ public class EntityPreservedBlock extends EntityThrowable {
 
 	private boolean canTrap(Entity entity) {
 		return ErebusAPI.preservableEntityRegistry.canBePreserved(entity);
-	}
-
-	private NBTTagCompound trapEntity(Entity entity) {
-		NBTTagCompound entityNBT = new NBTTagCompound();
-		entity.writeToNBT(entityNBT);
-		String mobName = EntityList.getKey(entity).toString();
-		entityNBT.setString("id", mobName);
-
-		return entityNBT;
 	}
 }
