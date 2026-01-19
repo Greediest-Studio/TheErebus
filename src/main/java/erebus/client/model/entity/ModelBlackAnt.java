@@ -339,7 +339,7 @@ public class ModelBlackAnt extends ModelBase {
 	public void render(Entity entity, float limbSwing, float prevLimbSwing, float entityTickTime, float rotationYaw, float rotationPitch, float unitPixel) {
 		super.render(entity, limbSwing, prevLimbSwing, entityTickTime, rotationYaw, rotationPitch, unitPixel);
 		setRotationAngles(limbSwing, prevLimbSwing, entityTickTime, rotationYaw, rotationPitch, unitPixel, entity);
-		EntityBlackAnt ant = (EntityBlackAnt) entity;
+		EntityBlackAnt ant = entity instanceof EntityBlackAnt ? (EntityBlackAnt) entity : null;
 
 		Thx.render(unitPixel);
 		ThxTop.render(unitPixel);
@@ -360,19 +360,19 @@ public class ModelBlackAnt extends ModelBase {
 		RML1.render(unitPixel);
 		RBL1.render(unitPixel);
 
-		if (ant.getTamedType() == (byte) 3) {
+		if (ant != null && ant.getTamedType() == (byte) 3) {
 			LeftPack.render(unitPixel);
 			StrapPack.render(unitPixel);
 			RightPack.render(unitPixel);
 
 		}
 
-		if (ant.getTamedType() == (byte) 4) {
+		if (ant != null && ant.getTamedType() == (byte) 4) {
 			RightShears.render(unitPixel);
 			LeftShears.render(unitPixel);
 		}
 
-		if (ant.getTamedType() == (byte) 2) {
+		if (ant != null && ant.getTamedType() == (byte) 2) {
 			LeftPack.render(unitPixel);
 			StrapPack.render(unitPixel);
 			RightPack.render(unitPixel);
@@ -386,7 +386,7 @@ public class ModelBlackAnt extends ModelBase {
 			GlStateManager.popMatrix();
 		}
 
-		if (ant.getTamedType() == (byte) 5) {
+		if (ant != null && ant.getTamedType() == (byte) 5) {
 			LeftPack.render(unitPixel);
 			StrapPack.render(unitPixel);
 			RightPack.render(unitPixel);
